@@ -1,0 +1,26 @@
+Options -Indexes
+
+<IfModule mod_headers.c>
+    Header always unset X-Powered-By
+</IfModule>
+
+<IfModule mod_authz_core.c>
+    <FilesMatch "(?i)^(composer\.(json|lock)|package(?:-lock)?\.json|phpunit\.xml(?:\.dist)?|test[^.]*\.php|\.env(?:\..*)?|.*\.(sql|ini|log|bak|dist|md|ya?ml|zip|tar|gz|7z|pem|key|p12|pfx|p8|jks|keystore))$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule "(^|/)\.(?!well-known(?:/|$))" - [NC,F,L]
+    RewriteRule ^(?:app|database|docs|includes|private|scripts|tmp|temp|output|backups|vendor|node_modules)(?:/|$) - [NC,F,L]
+    # Keep older direct public/assets links working after asset() moved to /assets/.
+    RewriteRule ^public/assets/(css|js)/(.+)$ assets/$1/$2 [NC,L]
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    <FilesMatch "(?i)^(composer\.(json|lock)|package(?:-lock)?\.json|phpunit\.xml(?:\.dist)?|test[^.]*\.php|\.env(?:\..*)?|.*\.(sql|ini|log|bak|dist|md|ya?ml|zip|tar|gz|7z|pem|key|p12|pfx|p8|jks|keystore))$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>

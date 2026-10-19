@@ -1,0 +1,109 @@
+.customer-order-detail-page .receipt-supporting-details,
+.customer-order-detail-page .order-detail__overview,
+.customer-order-detail-page .order-detail__overview > *,
+.customer-order-detail-page .order-detail__timeline {
+    min-width: 0;
+}
+
+.customer-order-detail-page .receipt-card__header h1 {
+    overflow-wrap: anywhere;
+}
+
+.customer-order-detail-page .order-detail__overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.order-detail__tracking-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    padding: 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-accent);
+}
+
+.order-detail__tracking-status > span:first-child {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.order-detail__tracking-status p {
+    flex-basis: 100%;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.order-detail__tracking-status .btn {
+    max-width: 100%;
+}
+
+.order-detail__tracking-facts {
+    display: grid;
+    gap: 0;
+    margin: 0.75rem 0 0;
+}
+
+.order-detail__tracking-facts > div {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 38%) minmax(0, 1fr);
+    gap: 0.5rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.order-detail__tracking-facts > div:last-child {
+    border-bottom: 0;
+}
+
+.order-detail__tracking-facts dt {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.order-detail__tracking-facts dd {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.order-detail__events li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem 1rem;
+    align-items: start;
+    overflow-wrap: anywhere;
+}
+
+.order-detail__events li span {
+    color: var(--muted);
+}
+
+@media (max-width: 900px) {
+    .customer-order-detail-page .order-detail__overview {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .order-detail__tracking-facts > div,
+    .order-detail__events li {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.2rem;
+    }
+
+    .order-detail__tracking-status {
+        padding: 0.75rem;
+    }
+
+    .order-detail__tracking-status .btn {
+        width: 100%;
+    }
+}

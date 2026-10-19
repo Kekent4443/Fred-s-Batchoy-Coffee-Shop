@@ -1,0 +1,3 @@
+# Migration tracking hashes raw bytes. Preserve historical SQL line endings
+# across GitHub clones, including on Windows with core.autocrlf enabled.
+/database/migrations/*.sql -text

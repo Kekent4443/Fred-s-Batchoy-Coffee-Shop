@@ -1,0 +1,467 @@
+:root {
+    --thermal-paper-width: 58mm;
+    --thermal-receipt-width: 50mm;
+    --thermal-receipt-padding-block: 2mm;
+    --thermal-receipt-padding-inline: 1mm;
+    --thermal-font-size: 10pt;
+    --thermal-line-height: 1.28;
+    --thermal-value-width: 30mm;
+    color-scheme: light;
+}
+
+:root[data-thermal-size="80"] {
+    --thermal-paper-width: 80mm;
+    --thermal-receipt-width: 72mm;
+    --thermal-receipt-padding-block: 3mm;
+    --thermal-receipt-padding-inline: 2mm;
+    --thermal-font-size: 10.5pt;
+    --thermal-line-height: 1.3;
+    --thermal-value-width: 44mm;
+}
+
+:root[data-thermal-size="58"] {
+    --thermal-paper-width: 58mm;
+    --thermal-receipt-width: 50mm;
+    --thermal-receipt-padding-block: 2mm;
+    --thermal-receipt-padding-inline: 1mm;
+    --thermal-font-size: 10pt;
+    --thermal-line-height: 1.28;
+    --thermal-value-width: 30mm;
+}
+
+@page {
+    /* JavaScript adds the exact roll width and content height before printing. */
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: #eef1f5;
+    color: #111827;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.thermal-print-page {
+    width: min(100%, 380px);
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 12px;
+}
+
+.thermal-print-controls {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 12px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.08);
+}
+
+.thermal-print-controls label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.thermal-print-controls select,
+.thermal-print-controls button,
+.thermal-print-controls a {
+    min-height: 44px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 14px;
+}
+
+.thermal-print-controls select {
+    width: 100%;
+    padding: 0 10px;
+    border: 1px solid #94a3b8;
+    background: #fff;
+    color: #111827;
+}
+
+.thermal-print-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.thermal-print-actions > * {
+    flex: 1 1 140px;
+    min-width: 0;
+}
+
+.thermal-print-actions [hidden] {
+    display: none !important;
+}
+
+.thermal-print-actions form button {
+    width: 100%;
+}
+
+.thermal-print-controls button,
+.thermal-print-controls a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border: 1px solid #1d4ed8;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.thermal-print-controls button {
+    background: #1d4ed8;
+    color: #fff;
+}
+
+.thermal-print-controls a {
+    border-color: #94a3b8;
+    background: #fff;
+    color: #334155;
+}
+
+.thermal-print-controls button:hover {
+    background: #1e40af;
+}
+
+.thermal-print-controls a:hover {
+    border-color: #64748b;
+    background: #f8fafc;
+}
+
+.thermal-print-controls select:focus-visible,
+.thermal-print-controls button:focus-visible,
+.thermal-print-controls a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.35);
+    outline-offset: 2px;
+}
+
+.thermal-print-controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.thermal-print-controls p {
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.thermal-print-sheet {
+    display: block;
+    width: var(--thermal-paper-width);
+    max-width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+
+.thermal-receipt {
+    width: var(--thermal-receipt-width);
+    max-width: var(--thermal-receipt-width);
+    height: auto;
+    min-height: 0;
+    margin: 0 auto;
+    padding: var(--thermal-receipt-padding-block) var(--thermal-receipt-padding-inline);
+    overflow-wrap: break-word;
+    background: #fff;
+    color: #000;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--thermal-font-size);
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant-ligatures: none;
+    letter-spacing: 0;
+    line-height: var(--thermal-line-height);
+}
+
+/* One fixed-width representation is shared by preview and browser printing. */
+.thermal-receipt--text {
+    width: var(--thermal-paper-width);
+    max-width: var(--thermal-paper-width);
+    padding: 3mm 3.5mm;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 9pt;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+:root[data-thermal-size="58"] .thermal-receipt--text {
+    padding: 2mm 5mm;
+    font-size: 9pt;
+    line-height: 1.2;
+}
+
+.thermal-receipt--text > pre {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    overflow: visible;
+    color: #000;
+    background: transparent;
+    font: inherit;
+    letter-spacing: 0;
+    white-space: pre;
+    tab-size: 4;
+}
+
+.thermal-receipt--text > pre[hidden] {
+    display: none !important;
+}
+
+.thermal-receipt__header,
+.thermal-receipt__footer {
+    text-align: center;
+}
+
+.thermal-receipt__header h1 {
+    margin: 0 0 1.5mm;
+    color: #000 !important;
+    font: inherit;
+    font-size: 15pt;
+    font-weight: 700 !important;
+    line-height: 1.15;
+    opacity: 1 !important;
+}
+
+.thermal-receipt__header p {
+    color: #222 !important;
+    font-size: 9.5pt;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+}
+
+:root[data-thermal-size="58"] .thermal-receipt__header h1 {
+    font-size: 14pt;
+}
+
+.thermal-receipt p,
+.thermal-receipt dl,
+.thermal-receipt dt,
+.thermal-receipt dd {
+    margin: 0;
+}
+
+.thermal-receipt__title {
+    margin-top: 2.5mm;
+    color: #111 !important;
+    font-size: 12pt;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em;
+    opacity: 1 !important;
+}
+
+:root[data-thermal-size="58"] .thermal-receipt__title {
+    font-size: 11pt;
+    letter-spacing: 0.02em;
+}
+
+.thermal-receipt__rule {
+    height: 0;
+    margin: 1.5mm 0;
+    border-top: 1px solid #000;
+}
+
+.thermal-receipt__meta,
+.thermal-receipt__totals {
+    display: grid;
+    gap: 1mm;
+}
+
+.thermal-receipt__meta > div,
+.thermal-receipt__totals > div,
+.thermal-receipt__item > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 2mm;
+}
+
+.thermal-receipt__meta dt,
+.thermal-receipt__totals dt {
+    min-width: 0;
+    font-weight: 700;
+}
+
+.thermal-receipt__meta dd,
+.thermal-receipt__totals dd,
+.thermal-receipt__item > div span:last-child {
+    max-width: var(--thermal-value-width);
+    text-align: right;
+    font-weight: 600;
+    word-break: normal;
+    overflow-wrap: anywhere;
+}
+
+.thermal-receipt dt {
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+.thermal-receipt[data-paper-width="58mm"] .thermal-receipt__meta > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25mm;
+}
+
+.thermal-receipt[data-paper-width="58mm"] .thermal-receipt__meta dt {
+    width: auto;
+    max-width: 100%;
+    font-weight: 700;
+    line-height: 1.25;
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+.thermal-receipt[data-paper-width="58mm"] .thermal-receipt__meta dd {
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+    line-height: 1.3;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
+.thermal-receipt[data-paper-width="58mm"] .thermal-receipt__totals dt {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+.thermal-receipt__items {
+    display: grid;
+    gap: 2.5mm;
+}
+
+.thermal-receipt__item {
+    break-inside: avoid;
+}
+
+.thermal-receipt__item strong {
+    display: block;
+    margin-bottom: 0.5mm;
+    font-size: inherit;
+    font-weight: 700;
+}
+
+.thermal-receipt__item span {
+    font-weight: 500;
+}
+
+.thermal-receipt__grand-total {
+    margin-top: 1.5mm;
+    padding-top: 1.5mm;
+    border-top: 1px solid #000;
+    font-size: 13pt;
+    font-weight: 700;
+}
+
+:root[data-thermal-size="58"] .thermal-receipt__grand-total {
+    font-size: 12pt;
+}
+
+.thermal-receipt__payment dd,
+.thermal-receipt__footer p {
+    font-weight: 600;
+}
+
+.thermal-receipt__footer small {
+    display: block;
+    margin-top: 1.5mm;
+    font-size: 9pt;
+    font-weight: 500;
+}
+
+:root[data-thermal-size="58"] .thermal-receipt__footer small {
+    font-size: 9pt;
+}
+
+@media (max-width: 380px) {
+    .thermal-print-page {
+        padding: 8px;
+    }
+}
+
+@media print {
+    .thermal-receipt,
+    .thermal-receipt * {
+        color: #000 !important;
+        opacity: 1 !important;
+        text-shadow: none !important;
+    }
+
+    html,
+    body,
+    .thermal-print-page,
+    .thermal-print-sheet {
+        width: var(--thermal-paper-width) !important;
+        max-width: var(--thermal-paper-width) !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        background: #fff !important;
+    }
+
+    .no-print,
+    .thermal-print-controls {
+        display: none !important;
+    }
+
+    .thermal-receipt {
+        position: static !important;
+        width: var(--thermal-receipt-width) !important;
+        max-width: var(--thermal-receipt-width) !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 auto !important;
+        padding: var(--thermal-receipt-padding-block) var(--thermal-receipt-padding-inline) !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        color: #000 !important;
+        transform: none !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .thermal-receipt--text {
+        width: var(--thermal-paper-width) !important;
+        max-width: var(--thermal-paper-width) !important;
+        padding: 3mm 3.5mm !important;
+        overflow: visible !important;
+    }
+
+    :root[data-thermal-size="58"] .thermal-receipt--text {
+        padding: 2mm 5mm !important;
+    }
+}

@@ -1,0 +1,451 @@
+/* Administrator delivery management. Scoped so other tables and delivery pages remain unchanged. */
+.admin-deliveries,
+.admin-deliveries__panel,
+.admin-deliveries__list,
+.admin-delivery-card,
+.admin-delivery-card__cell {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.admin-deliveries__heading {
+    margin-bottom: 1.15rem;
+}
+
+.admin-deliveries__metrics {
+    margin-bottom: 1.25rem;
+}
+
+.admin-deliveries__metrics .metric-box__icon .sidebar__icon,
+.admin-deliveries__metrics .metric-box__icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.admin-deliveries__panel {
+    padding: clamp(0.8rem, 1.5vw, 1.35rem);
+    overflow: visible;
+}
+
+.admin-deliveries__toolbar {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(190px, 0.35fr) auto auto;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.admin-deliveries__search,
+.admin-deliveries__filter {
+    position: relative;
+    display: block;
+    min-width: 0;
+}
+
+.admin-deliveries__search input,
+.admin-deliveries__filter select,
+.admin-deliveries__toolbar .btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+}
+
+.admin-deliveries__search input {
+    padding-inline-start: 2.85rem;
+}
+
+.admin-deliveries__search > .sidebar__icon {
+    position: absolute;
+    inset-inline-start: 1rem;
+    inset-block-start: 50%;
+    width: 18px;
+    height: 18px;
+    z-index: 1;
+    color: var(--muted);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.admin-deliveries__column-headings,
+.admin-delivery-card {
+    display: grid;
+    grid-template-columns: minmax(245px, 2.1fr) minmax(125px, 1fr) minmax(125px, 1fr) minmax(130px, 0.9fr) minmax(135px, 1fr) minmax(112px, 0.75fr) minmax(155px, 1.15fr);
+    gap: 0;
+}
+
+.admin-deliveries__column-headings {
+    padding: 0.7rem 1rem;
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.admin-deliveries__list {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.admin-delivery-card {
+    position: relative;
+    align-items: stretch;
+    overflow: visible;
+    border: 1px solid var(--line);
+    border-left: 4px solid #64748b;
+    border-radius: 15px;
+    background: var(--surface);
+    box-shadow: 0 10px 24px rgba(4, 11, 28, 0.08);
+}
+
+.admin-delivery-card.priority-item--high,
+.admin-delivery-card.is-issue {
+    border-left-color: #ef4444;
+}
+
+.admin-delivery-card.is-ready,
+.admin-delivery-card.priority-item--medium:not(.is-issue) {
+    border-left-color: #f59e0b;
+}
+
+.admin-delivery-card.is-delivered {
+    border-left-color: #60a5fa;
+}
+
+.admin-delivery-card__cell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 1rem;
+    color: var(--text);
+    overflow-wrap: anywhere;
+}
+
+.admin-delivery-card__cell + .admin-delivery-card__cell {
+    border-inline-start: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+}
+
+.admin-delivery-card__cell strong {
+    line-height: 1.35;
+}
+
+.admin-delivery-card__cell small,
+.admin-delivery-card__cell time {
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.admin-delivery-card__label {
+    display: none;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+}
+
+.admin-delivery-card__reference {
+    gap: 0.45rem;
+}
+
+.admin-delivery-card__reference-number {
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+}
+
+.admin-delivery-card__reference .priority-badge {
+    width: fit-content;
+    max-width: 100%;
+}
+
+.admin-delivery-card__address {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    margin: 0.15rem 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.admin-delivery-card__address .sidebar__icon {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+    margin-top: 0.08rem;
+}
+
+.admin-delivery-card__landmark {
+    padding-inline-start: 1.4rem;
+}
+
+.admin-delivery-card__payment {
+    line-height: 1.4;
+}
+
+.admin-delivery-card__eta time {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.admin-delivery-card__actions {
+    position: relative;
+    align-items: stretch;
+}
+
+.admin-delivery-action {
+    position: relative;
+    width: 100%;
+}
+
+.admin-delivery-action > summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 44px;
+    padding: 0.7rem 0.85rem;
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+    list-style: none;
+    border: 1px solid transparent;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #1769ff, #8b12ef);
+    box-shadow: 0 9px 20px rgba(80, 52, 225, 0.2);
+}
+
+.admin-delivery-action > summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-delivery-action > summary:hover,
+.admin-delivery-action > summary:focus-visible {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.admin-delivery-action > summary:focus-visible {
+    outline: 3px solid rgba(99, 102, 241, 0.3);
+    outline-offset: 2px;
+}
+
+.admin-delivery-action > summary .sidebar__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+}
+
+.admin-delivery-action--issue > summary {
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.72);
+    background: transparent;
+    box-shadow: none;
+}
+
+.admin-delivery-action__body {
+    position: absolute;
+    z-index: 20;
+    inset-block-start: calc(100% + 0.55rem);
+    inset-inline-end: 0;
+    width: min(340px, calc(100vw - 3rem));
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: 0 20px 45px rgba(2, 8, 23, 0.28);
+}
+
+.admin-delivery-action__issue {
+    display: grid;
+    gap: 0.25rem;
+    margin: 0 0 0.85rem;
+    padding: 0.75rem;
+    color: var(--text);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    border-inline-start: 3px solid #ef4444;
+    border-radius: 8px;
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.admin-delivery-form,
+.admin-delivery-form > label,
+.admin-delivery-form__field {
+    width: 100%;
+    min-width: 0;
+}
+
+.admin-delivery-form > label,
+.admin-delivery-form__field {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.admin-delivery-form > label > span,
+.admin-delivery-form__field > label {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.admin-delivery-form select,
+.admin-delivery-form textarea,
+.admin-delivery-form input:not(.date-input-control__native),
+.admin-delivery-form .btn {
+    width: 100%;
+    min-width: 0;
+}
+
+.admin-delivery-form textarea {
+    resize: vertical;
+}
+
+.admin-delivery-form .date-format-hint {
+    font-size: 0.72rem;
+}
+
+.admin-delivery-card__locked {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 42px;
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    color: var(--muted);
+    font-weight: 800;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--surface) 78%, var(--line));
+}
+
+.admin-delivery-card__locked .sidebar__icon {
+    width: 17px;
+    height: 17px;
+}
+
+.admin-deliveries__empty {
+    padding: 2.5rem 1rem;
+}
+
+.admin-deliveries__empty h2 {
+    margin-bottom: 0.35rem;
+    font-size: 1.15rem;
+}
+
+.admin-deliveries__result-count {
+    margin: 1rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.admin-deliveries .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 1320px) {
+    .admin-deliveries__column-headings {
+        display: none;
+    }
+
+    .admin-delivery-card {
+        grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .admin-delivery-card__label {
+        display: block;
+    }
+
+    .admin-delivery-card__cell + .admin-delivery-card__cell {
+        border-inline-start: 0;
+    }
+
+    .admin-delivery-card__cell:nth-child(n + 4) {
+        border-top: 1px solid var(--line);
+    }
+
+    .admin-delivery-card__actions {
+        grid-column: 1 / -1;
+        border-top: 1px solid var(--line);
+    }
+
+    .admin-delivery-action__body {
+        position: static;
+        width: 100%;
+        margin-top: 0.65rem;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .admin-deliveries__toolbar {
+        grid-template-columns: minmax(0, 1fr) minmax(180px, 0.45fr);
+    }
+
+    .admin-deliveries__reset,
+    .admin-deliveries__submit {
+        grid-row: 2;
+    }
+
+    .admin-delivery-card {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-delivery-card__reference,
+    .admin-delivery-card__actions {
+        grid-column: 1 / -1;
+    }
+
+    .admin-delivery-card__cell:nth-child(n + 2) {
+        border-top: 1px solid var(--line);
+    }
+}
+
+@media (max-width: 620px) {
+    .admin-deliveries__toolbar,
+    .admin-delivery-card {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .admin-deliveries__search,
+    .admin-deliveries__filter,
+    .admin-deliveries__reset,
+    .admin-deliveries__submit {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .admin-delivery-card__reference,
+    .admin-delivery-card__actions {
+        grid-column: auto;
+    }
+
+    .admin-delivery-card__cell,
+    .admin-delivery-card__cell:nth-child(n + 2) {
+        padding: 0.9rem;
+        border-top: 1px solid var(--line);
+    }
+
+    .admin-delivery-card__cell:first-child {
+        border-top: 0;
+    }
+
+    .admin-delivery-action > summary,
+    .admin-delivery-form .btn,
+    .admin-delivery-card__locked {
+        width: 100%;
+        min-height: 46px;
+    }
+}

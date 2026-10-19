@@ -1,0 +1,17 @@
+.qz-print-status {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 9999;
+    max-width: min(26rem, calc(100vw - 2rem));
+    padding: 0.85rem 1rem;
+    border-radius: 0.7rem;
+    background: #243247;
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.2);
+    font: 500 0.9rem/1.4 Arial, Helvetica, sans-serif;
+}
+
+.qz-print-status[hidden] { display: none !important; }
+.qz-print-status[data-kind="success"] { background: #166534; }
+.qz-print-status[data-kind="error"] { background: #991b1b; }

@@ -1,0 +1,205 @@
+/* User Management layout; shared colors and controls come from style.css. */
+.user-management-filters {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.7fr) repeat(2, minmax(155px, 1fr)) repeat(3, max-content);
+    align-items: end;
+    gap: 1rem;
+}
+
+.user-management-filters__field {
+    display: grid;
+    gap: 0.45rem;
+    min-width: 0;
+    margin: 0;
+}
+
+.user-management-filters__field span {
+    color: var(--muted);
+    font-size: 0.83rem;
+    font-weight: 700;
+}
+
+.user-management-filters__field input,
+.user-management-filters__field select,
+.user-management-filters > .btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    margin: 0;
+}
+
+.user-management-results {
+    margin: 0 0 0.9rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.user-management-table td {
+    overflow-wrap: anywhere;
+}
+
+.user-management-table td[data-label="Contact"] small {
+    display: inline-block;
+    margin-top: 0.25rem;
+}
+
+#user-form .form-grid > label,
+#user-form .form-grid > label > input,
+#user-form .form-grid > label > select,
+#user-form .form-grid > label > textarea,
+#add-staff .form-grid > label,
+#add-staff .form-grid > label > input,
+#add-staff .form-grid > label > select,
+#add-staff .form-grid > label > textarea {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+.user-account-panel {
+    margin-top: 1rem;
+    scroll-margin-top: 5.5rem;
+}
+
+.user-account-panel__heading {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.user-account-panel__heading h2 {
+    margin: 0;
+}
+
+.user-account-panel__heading p {
+    max-width: 65ch;
+    margin: 0.45rem 0 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.user-account-panel__error {
+    margin: 0 0 1rem;
+    color: var(--danger, #dc2626);
+}
+
+.user-account-form {
+    max-width: 960px;
+    column-gap: 1.25rem;
+    row-gap: 1.1rem;
+}
+
+.user-account-form > label {
+    align-content: start;
+    gap: 0.45rem;
+    min-width: 0;
+}
+
+.user-account-form > label > input,
+.user-account-form > label > select {
+    min-height: 50px;
+}
+
+.user-account-form > label > small {
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.user-account-form > label > .field-error {
+    color: var(--danger, #dc2626);
+}
+
+.user-account-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 0.35rem;
+}
+
+.user-account-form__actions .btn {
+    min-height: 48px;
+}
+
+@media (max-width: 1200px) {
+    .user-management-filters {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .user-management-filters > .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .user-management-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    .user-management-filters__field:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .user-account-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .user-management-filters {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .user-management-filters__field:first-child {
+        grid-column: auto;
+    }
+
+    .user-management-table td {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.3rem;
+    }
+
+    .user-management-table td[data-label="Actions"] {
+        display: block;
+    }
+
+    .user-management-table td[data-label="Actions"]::before {
+        display: block;
+        margin-bottom: 0.6rem;
+    }
+
+    .user-management-table .user-actions-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    .user-management-table .user-actions-row .user-action-item {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-width: 0;
+    }
+
+    .user-management-table .user-actions-row .user-action-label {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    #user-form .form-grid > .form-grid__full .btn,
+    #add-staff .form-grid > .form-grid__full .btn {
+        width: 100%;
+    }
+
+    .user-account-panel__heading {
+        margin-bottom: 1rem;
+    }
+
+    .user-account-form__actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

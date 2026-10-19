@@ -1,0 +1,30 @@
+/* Manager delivery records: responsive cards without an eight-column squeeze. */
+.manager-deliveries { overflow: visible; }
+.manager-deliveries__toolbar { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(190px, .42fr) auto auto; gap: .75rem; margin-bottom: 1rem; }
+.manager-deliveries__toolbar input, .manager-deliveries__toolbar select, .manager-deliveries__toolbar .btn { min-width: 0; min-height: 48px; }
+.manager-deliveries .table-responsive { overflow: visible; }
+.manager-deliveries .data-table, .manager-deliveries .data-table tbody, .manager-deliveries .data-table tr, .manager-deliveries .data-table td { display: block; width: 100%; }
+.manager-deliveries .data-table thead { display: none; }
+.manager-deliveries .data-table tbody { display: grid; gap: .9rem; }
+.manager-deliveries .data-table tbody tr { display: grid; grid-template-columns: minmax(230px, 1.65fr) repeat(2, minmax(155px, 1fr)); overflow: hidden; border: 1px solid var(--line); border-left: 4px solid #64748b; border-radius: 15px; background: var(--surface); box-shadow: 0 10px 24px rgba(4,11,28,.08); }
+.manager-deliveries .data-table tbody tr.priority-item--high { border-left-color: #ef4444; }
+.manager-deliveries .data-table tbody tr.priority-item--medium { border-left-color: #f59e0b; }
+.manager-deliveries .data-table tbody tr.priority-item--low { border-left-color: #60a5fa; }
+.manager-deliveries .data-table tbody td { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: .35rem; min-width: 0; padding: 1rem; color: var(--text); overflow-wrap: anywhere; border: 0; border-inline-start: 1px solid color-mix(in srgb, var(--line) 72%, transparent); }
+.manager-deliveries .data-table tbody td::before { content: attr(data-label); color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .075em; text-transform: uppercase; }
+.manager-deliveries .data-table tbody td:first-child { border-inline-start: 0; }
+.manager-deliveries .data-table tbody td:first-child .priority-badge { width: fit-content; max-width: 100%; }
+.manager-deliveries .data-table tbody td:nth-child(6) { grid-column: 1 / -1; align-items: flex-start; justify-content: flex-start; gap: .35rem; padding-top: .8rem; color: var(--muted); border-top: 1px solid var(--line); border-inline-start: 0; }
+.manager-deliveries__address { color: var(--text); font-weight: 600; line-height: 1.45; }
+.manager-deliveries .data-table tbody td:nth-child(6) small { display: block; margin-top: .15rem; color: var(--muted); font-size: .82rem; }
+.manager-deliveries__landmark { padding-inline-start: .65rem; border-inline-start: 2px solid color-mix(in srgb, var(--primary) 60%, transparent); }
+.manager-deliveries .data-table tbody td:nth-child(8) { grid-column: 1 / -1; align-items: stretch; padding-top: .85rem; border-top: 1px solid var(--line); border-inline-start: 0; background: color-mix(in srgb, var(--surface) 92%, var(--line)); }
+.manager-deliveries .data-table tbody td:nth-child(8) > .badge { align-self: flex-start; }
+.manager-deliveries .stack-form { width: min(100%, 440px); }
+.manager-deliveries .stack-form > label { display: grid; gap: .35rem; min-width: 0; }
+.manager-deliveries .stack-form select, .manager-deliveries .stack-form textarea, .manager-deliveries .stack-form .btn, .manager-deliveries .date-input-field { width: 100%; min-width: 0; }
+.manager-deliveries__issue { margin-bottom: .75rem; padding: .75rem; border: 1px solid color-mix(in srgb, #f59e0b 45%, var(--line)); border-inline-start: 3px solid #f59e0b; border-radius: 10px; background: color-mix(in srgb, #f59e0b 12%, var(--surface)); color: var(--text); font-size: .875rem; line-height: 1.45; overflow-wrap: anywhere; }
+.manager-deliveries .date-input-control__display { min-width: 0; }
+.manager-deliveries .status-action-button { min-height: 44px; }
+@media (max-width: 850px) { .manager-deliveries__toolbar { grid-template-columns: minmax(0,1fr) minmax(170px,.45fr); } .manager-deliveries .data-table tbody tr { grid-template-columns: repeat(2,minmax(0,1fr)); } .manager-deliveries .data-table tbody td { border-top: 1px solid var(--line); border-inline-start: 0; } .manager-deliveries .data-table tbody td:nth-child(1), .manager-deliveries .data-table tbody td:nth-child(2) { border-top: 0; } }
+@media (max-width: 560px) { .manager-deliveries__toolbar, .manager-deliveries .data-table tbody tr { grid-template-columns: minmax(0,1fr); } .manager-deliveries__toolbar .btn, .manager-deliveries__toolbar a { width: 100%; } .manager-deliveries .data-table tbody td:nth-child(2) { border-top: 1px solid var(--line); } .manager-deliveries .data-table tbody td:nth-child(6) { flex-direction: column; gap: .35rem; } .manager-deliveries .stack-form { width: 100%; } }
