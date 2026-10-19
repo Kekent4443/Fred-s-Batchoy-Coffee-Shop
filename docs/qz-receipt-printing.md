@@ -20,6 +20,6 @@ Without the matching trusted certificate/key, receipt buttons fail closed with a
 
 ## Smoke tests
 
-Run `php scripts/test-qz-receipt.php`, `node scripts/test-qz-receipt.js`, and `php scripts/test-delivery-tracking.php` in a disposable/local database environment. Also physically print short and long receipts, including long names/addresses, multiple products, totals, and repeated clicks. Verify the XP-58 receives one job per click and no horizontal faded bands. If QZ is stopped or the XP-58 is disconnected, the button must re-enable and show an error.
+Physically print short and long receipts from the local application, including long names/addresses, multiple products, totals, and repeated clicks. Verify the XP-58 receives one job per click and no horizontal faded bands. If QZ is stopped or the XP-58 is disconnected, the button must re-enable and show an error. The development test scripts and generated sample PDFs have been removed from this distribution.
 
 QZ's [signing guide](https://qz.io/docs/signing) describes its certificate and SHA512 signing requirements. Its [raw printing guide](https://qz.io/docs/raw) covers direct text jobs.

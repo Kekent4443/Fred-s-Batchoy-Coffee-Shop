@@ -27,7 +27,6 @@ Pages cannot run this PHP application.
 - PHP 8.1 to 8.3 with the extensions listed in `composer.json`.
 - MySQL/MariaDB and Apache with `mod_rewrite` and `.htaccess` overrides enabled.
 - Composer and Git. Python 3.9+ is used only by the repository safety/export tool.
-- Node.js is optional, used only for the JavaScript receipt test below.
 
 Run setup commands from the project root in PowerShell. For this installation:
 
@@ -129,7 +128,7 @@ private signing keys must stay outside this entire project directory.
 | `assets/` | Styles, JavaScript, and shared static images. |
 | `database/` | Fresh-install schema, sample settings, and migration history. |
 | `private/` | Local configuration, protected uploads, and private backups. |
-| `scripts/` | Command-line setup, maintenance, verification, and export tools. |
+| `scripts/` | Administrator setup/restore, migrations, email queue, private URL checks, upload safety/export, and the local receipt spooler. |
 | `docs/` | Receipt setup, repository review, and supporting documentation. |
 | `vendor/` | Composer-installed dependencies, recreated by `composer install`. |
 | `tmp/` | Local temporary files and the generated clean upload ZIP. |
@@ -209,22 +208,15 @@ composer check-platform-reqs
 python scripts/check-repository.py
 ```
 
-The upload guard has its own tests using disposable Git repositories:
+After these checks, verify login, ordering, payments, delivery, and receipt
+printing in your local application. The local Windows receipt spooler is
+`scripts/print-xprinter-raw.ps1`; keep it with the application because PHP calls
+it when sending receipts to the attached XP-58 printer.
 
-```powershell
-python scripts/test-repository-safety.py
-```
-
-Receipt payload/signing and browser-control tests can be run with PHP and Node.js:
-
-```powershell
-php scripts/test-qz-receipt.php
-node scripts/test-qz-receipt.js
-```
-
-These checks cover their individual components. Verify login, ordering,
-payments, and delivery in your local application too. The earlier review and
-its testing limits are recorded in [the repository review](docs/repository-safety.md).
+Development test suites, test fixtures, generated PDF samples, temporary browser
+profiles, and obsolete refactor notes have been removed from this distribution.
+The earlier review and its testing limits are recorded in
+[the repository review](docs/repository-safety.md).
 
 ## Troubleshooting
 

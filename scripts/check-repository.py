@@ -84,14 +84,11 @@ def content_findings(name, data, source):
         for match in pattern.finditer(text):
             line = text.count("\n", 0, match.start()) + 1
             findings.append(f"{source} {name}:{line}: {label}")
-    # Test passwords belong only to disposable fixtures. Provider tokens and
-    # private keys above are rejected everywhere, including tests/templates.
-    if not name.startswith(("scripts/test-", "scripts/fixtures/")):
-        for match in ASSIGNMENT.finditer(text):
-            value = match.group(2)
-            if value.strip() and not PLACEHOLDER.search(value):
-                line = text.count("\n", 0, match.start()) + 1
-                findings.append(f"{source} {name}:{line}: hardcoded credential")
+    for match in ASSIGNMENT.finditer(text):
+        value = match.group(2)
+        if value.strip() and not PLACEHOLDER.search(value):
+            line = text.count("\n", 0, match.start()) + 1
+            findings.append(f"{source} {name}:{line}: hardcoded credential")
     return findings
 
 

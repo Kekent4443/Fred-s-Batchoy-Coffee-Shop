@@ -1,6 +1,6 @@
-# Local, manual diagnostic only. Sends ASCII text directly to the
-# installed XP-58 queue; no browser, PHP app, customer data, cutter, or extra
-# paper-feed command is involved. Never expose this as a web endpoint.
+# Local XP-58 RAW spooler. PHP receipt printing supplies validated text with
+# -FromStdin; the other switches support manual printer diagnostics.
+# Never expose this script as a web endpoint.
 param(
     [switch]$Extended,
     [string]$ReceiptPdfPath,

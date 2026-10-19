@@ -24,7 +24,7 @@ function local_xp58_print_available(): bool
     return in_array((string) ($_SERVER['REMOTE_ADDR'] ?? ''), $loopback, true)
         && in_array($requestHost, $loopback, true)
         && in_array($appHost, $loopback, true)
-        && is_file(APP_ROOT . '/scripts/test-xprinter-raw.ps1');
+        && is_file(APP_ROOT . '/scripts/print-xprinter-raw.ps1');
 }
 
 /** @param list<string> $lines */
@@ -52,7 +52,7 @@ function local_xp58_spool_lines(array $lines): bool
 
     $systemRoot = (string) (getenv('SystemRoot') ?: 'C:\\Windows');
     $powershell = realpath($systemRoot . '/System32/WindowsPowerShell/v1.0/powershell.exe');
-    $script = realpath(APP_ROOT . '/scripts/test-xprinter-raw.ps1');
+    $script = realpath(APP_ROOT . '/scripts/print-xprinter-raw.ps1');
     if ($powershell === false || $script === false) {
         return false;
     }

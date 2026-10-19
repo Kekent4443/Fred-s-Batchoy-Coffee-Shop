@@ -28,9 +28,24 @@ No provider credentials were detected in the final eligible upload files by
 the pattern checks. Existing local configuration, administrator rollback data,
 uploaded identification/payment/delivery images and browser files remain on the
 computer, excluded from the upload. Existing database accounts/passwords were
-not modified. Fixed dummy hashes used for authentication timing and synthetic
-test credentials are source fixtures, not seeded user accounts. Existing public
-business contact defaults remain in application/SQL source.
+not modified. Authentication timing helpers retain fixed dummy hashes; the
+removed tests used synthetic credentials. Neither supplies seeded user accounts.
+Existing public business contact defaults remain in application/SQL source.
+
+## Project cleanup
+
+Development test suites and fixtures, the receipt fixture generator, generated
+PDF samples, a temporary browser profile, and obsolete role-page refactor notes
+were removed from the project after the preparation review. The generated PDF
+and browser folders were moved to recoverable Windows temporary storage because
+automatic approval review blocked their permanent deletion. The original test
+results below describe verification performed before that cleanup.
+
+The local receipt spooler was retained as `scripts/print-xprinter-raw.ps1` and its
+PHP references were updated. Administrator setup/restore, migration, email queue,
+private URL verification and repository safety/export tools remain. Local
+configuration, uploads, backups, runtime dependencies and migration history were
+preserved. The clean upload archive is regenerated after cleanup.
 
 ## Verification
 
