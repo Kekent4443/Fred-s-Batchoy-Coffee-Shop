@@ -1,4 +1,5 @@
 # Local credentials and private runtime data (allow only reviewed templates).
+/database/
 /private/*
 !/private/.htaccess
 !/private/*.example.php
