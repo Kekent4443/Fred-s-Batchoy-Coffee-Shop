@@ -1,8 +1,0 @@
-CREATE TABLE IF NOT EXISTS schema_migrations (
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    migration VARCHAR(255) NOT NULL,
-    checksum CHAR(64) NOT NULL,
-    batch INT UNSIGNED NOT NULL DEFAULT 1,
-    applied_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY uq_schema_migrations_migration (migration)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
