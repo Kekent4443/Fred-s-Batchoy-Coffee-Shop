@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Fred's Multi-Product Sales Ordering System
 
 PHP/MySQL ordering system for localhost use with Laragon on Windows. GitHub
